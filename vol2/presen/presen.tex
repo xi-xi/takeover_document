@@ -22,8 +22,9 @@
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
+
 \begin{frame}{注意事項}
-    基本的文法はについては\alert{省略}します
+    基本的文法については\alert{省略}します
 
     適宜質問してください
 \end{frame}
@@ -109,27 +110,21 @@
         {\Huge pyenv + Anaconda}
     \end{center}
 \end{frame}
-\defverbatim[colored]\installpyenv{%
-\begin{lstlisting}[basicstyle=\small\ttfamily]
-$ pyenv install 3.5.1
-\end{lstlisting}
-}
-\defverbatim[colored]\usepyenv{%
-\begin{lstlisting}[basicstyle=\small\ttfamily]
-$ pyenv local 3.5.1
-\end{lstlisting}
-}
-\begin{frame}{pyenvとは}
+\begin{frame}[fragile]{pyenvとは}
     \begin{itemize}
         \item 複数のPythonバージョンを取り替えられる
         \item Homebrewを使ってインストール可
     \end{itemize}
     \begin{exampleblock}{超簡単な使い方}
         python 3.5.1をインストール
-        \installpyenv
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+$ pyenv install 3.5.1
+\end{lstlisting}
 
         カレント以下では3.5.1を使用
-        \usepyenv
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+$ pyenv local 3.5.1
+\end{lstlisting}
     \end{exampleblock}
 \end{frame}
 \begin{frame}
@@ -161,23 +156,17 @@ $ pyenv local 3.5.1
         \item<2|alert@2> とっても楽に環境構築が可能
     \end{itemize}
 \end{frame}
-\defverbatim[colored]\installanaconda{%
-\begin{lstlisting}[basicstyle=\small\ttfamily]
-$ pyenv install anaconda3-4.0.0
-\end{lstlisting}
-}
-\defverbatim[colored]\useanaconda{%
-\begin{lstlisting}[basicstyle=\small\ttfamily]
-$ pyenv local anaconda3-4.0.0
-\end{lstlisting}
-}
-\begin{frame}{pyenv + Anacondaによる環境構築}
+\begin{frame}[fragile]{pyenv + Anacondaによる環境構築}
     \begin{block}{Mac}
         \begin{enumerate}
             \item Anacondaのインストール(時間大)
-            \installanaconda
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+$ pyenv install anaconda3-4.0.0
+\end{lstlisting}
             \item カレント以下で使用を宣言
-            \useanaconda
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+$ pyenv local anaconda3-4.0.0
+\end{lstlisting}
         \end{enumerate}
     \end{block}
     \begin{exampleblock}{(参考)Windows}
@@ -192,25 +181,22 @@ $ pyenv local anaconda3-4.0.0
         \item 特殊メソッド
     \end{itemize}
 \end{frame}
-\defverbatim[colored]\onelinear{%
-\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{ワンライナー}
+    なんでも一行でかける素敵な構文
+
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
 normal = []
 for i in range(10):
     normal.append(i)
 one = [i for i in range(10)]
 \end{lstlisting}
-}
-\begin{frame}{ワンライナー}
-    なんでも一行でかける素敵な構文
-
-    \onelinear
 
     ここでnormalとoneは同じ
 
     \alert{使い過ぎると読みにくくなるので注意}
 \end{frame}
-\defverbatim[colored]\wronglinear{%
-\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{やっちゃったワンライナー}
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red},caption={wrong\_onelinear.py},captionpos=t]
 def load_csv(filename):
     with open(filename) as f:
         return [
@@ -218,17 +204,14 @@ def load_csv(filename):
             for row in csv.reader(f)
         ]
 \end{lstlisting}
-}
-\begin{frame}{やっちゃったワンライナー}
-    \wronglinear
 \end{frame}
 \begin{frame}{特殊メソッド}
     特定の構文を使う際にPythonによって呼び出される関数
 
     \_\_init\_\_，\_\_call\_\_，\_\_str\_\_など様々
 \end{frame}
-\defverbatim[colored]\specialfunc{%
-\begin{lstlisting}[language=Python,basicstyle=\scriptsize\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}, commentstyle=\color{green}]
+\begin{frame}[fragile]{例}
+\begin{lstlisting}[language=Python,basicstyle=\scriptsize\ttfamily, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}, commentstyle=\color{green},caption={special\_method.py},captionpos=t]
 class QuadraticFunction:
     def __init__(self, a, b, c):
         self.a = a
@@ -246,9 +229,6 @@ def main():
     for x in range(10):
         print(fx(x)) #call fx.__call__(x)
 \end{lstlisting}
-}
-\begin{frame}{例}
-    \specialfunc
 \end{frame}
 \begin{frame}{特殊メソッド}
     特定の構文を使う際にPythonによって呼び出される関数
@@ -278,30 +258,24 @@ def main():
         \item enumerate
     \end{itemize}
 \end{frame}
-\defverbatim[colored]\zipsample{%
-\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{zip}
+    ２つのリストを同時にループ
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}, caption={zip\_sample.py},captionpos=t]
 def main():
     a_list = [1, 2, 3]
     b_list = [4, 5, 6]
     for a, b in zip(a_list, b_list):
         print(a, b)
 \end{lstlisting}
-}
-\begin{frame}{zip}
-    ２つのリストを同時にループ
-    \zipsample
 \end{frame}
-\defverbatim[colored]\enumsample{%
-\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{enumerate}
+    indexと要素を同時に取得
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily,keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red},caption={enum\_sample.py},captionpos=t]
 def main():
     a_list = ["a", "b", "c"]
     for i, a in enumerate(a_list):
         print(i, a)
 \end{lstlisting}
-}
-\begin{frame}{enumerate}
-    indexと要素を同時に取得
-    \enumsample
 \end{frame}
 
 \section{データのロード}
@@ -341,8 +315,11 @@ def main():
         \end{column}
     \end{columns}
 \end{frame}
-\defverbatim[colored]\loadcsvpython{%
-\begin{lstlisting}[language=Python,basicstyle=\tiny\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{Pythonによるcsvの読み込み}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{block}{コード(loadcsv.py)}
+\begin{lstlisting}[language=Python,basicstyle=\tiny\ttfamily,keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
 import sys
 import csv
 
@@ -356,12 +333,6 @@ def main(filename):
 if __name__ == '__main__':
     main(sys.argv[1])
 \end{lstlisting}
-}
-\begin{frame}{Pythonによるcsvの読み込み}
-    \begin{columns}[t]
-        \begin{column}{0.5\textwidth}
-            \begin{block}{コード}
-                \loadcsvpython
             \end{block}
         \end{column}
         \begin{column}{0.5\textwidth}
@@ -379,8 +350,8 @@ if __name__ == '__main__':
 
     調べればすぐわかるので省略
 \end{frame}
-\defverbatim[colored]\loadcsvcpp{%
-\begin{lstlisting}[language=C++,basicstyle=\tiny\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{余談: C++によるcsvの読み込み}
+\begin{lstlisting}[language=C++,basicstyle=\tiny\ttfamily,keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -399,9 +370,6 @@ int main(int argc, char** argv){
     }
 }
 \end{lstlisting}
-}
-\begin{frame}{余談: C++によるcsvの読み込み}
-    \loadcsvcpp
 
     \pause
     \alert{Pythonの方がはるかに楽}
@@ -454,8 +422,11 @@ int main(int argc, char** argv){
         \end{column}
     \end{columns}
 \end{frame}
-\defverbatim[colored]\loadjsonpython{%
-\begin{lstlisting}[language=Python,basicstyle=\tiny\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+\begin{frame}[fragile]{Pythonによるjsonの読み込み}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{block}{コード(loadjson.py)}
+\begin{lstlisting}[language=Python,basicstyle=\tiny\ttfamily, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
 import sys
 import json
 
@@ -467,12 +438,6 @@ def main(filename):
 if __name__ == '__main__':
     main(sys.argv[1])
 \end{lstlisting}
-}
-\begin{frame}{Pythonによるjsonの読み込み}
-    \begin{columns}[t]
-        \begin{column}{0.5\textwidth}
-            \begin{block}{コード}
-                \loadjsonpython
             \end{block}
         \end{column}
         \begin{column}{0.5\textwidth}
@@ -484,6 +449,17 @@ if __name__ == '__main__':
             \end{block}
         \end{column}
     \end{columns}
+\end{frame}
+
+\section{まとめ}
+\begin{frame}
+Pythonはとっても強い言語
+
+\pause
+欲しいと思うものは大体実装済み
+
+\pause
+\alert{何としてでもマスターしましょう}
 \end{frame}
 \begin{frame}[standout]
   Questions?
