@@ -22,6 +22,11 @@
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
+\begin{frame}{注意事項}
+    基本的文法はについては\alert{省略}します
+
+    適宜質問してください
+\end{frame}
 \begin{frame}{コードについて}
     \begin{itemize}
         \item 今日のコードとプレゼンは\url{https://github.com/xi-xi/takeover_document}
@@ -33,25 +38,28 @@
 
 \section{Pythonとは?}
 \begin{frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/pythonlogo.pdf}
+    \end{figure}
     \begin{quote}
         Python is a programming language that lets you work quickly and integrate systems more effectively
     \end{quote}
     \begin{flushright}
-        (Python.org)
+        (\url{https://www.python.org})
     \end{flushright}
 \end{frame}
 \begin{frame}{Pythonとは?}
-    近年とっても人気なスクリプト言語
+    近年人気なスクリプト言語
 
-    \pause
-    \begin{block}{人気なジャンル}
+    \begin{block}<2->{人気なジャンル}
         \begin{itemize}
             \item 機械学習
             \item データ解析...
         \end{itemize}
     \end{block}
 
-    \begin{block}{採用実績}
+    \begin{block}<3->{採用実績}
         \begin{itemize}
             \item Google
             \item Dropbox...
@@ -123,6 +131,18 @@ $ pyenv local 3.5.1
         カレント以下では3.5.1を使用
         \usepyenv
     \end{exampleblock}
+\end{frame}
+\begin{frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/anacondalogo.pdf}
+    \end{figure}
+    \begin{quote}
+        Leading Open Data Science Platform Powered by Python
+    \end{quote}
+    \begin{flushright}
+        (\url{https://www.continuum.io/why-anaconda})
+    \end{flushright}
 \end{frame}
 \begin{frame}{Anacondaとは}
     \begin{itemize}
@@ -464,5 +484,8 @@ if __name__ == '__main__':
             \end{block}
         \end{column}
     \end{columns}
+\end{frame}
+\begin{frame}[standout]
+  Questions?
 \end{frame}
 \end{document}
