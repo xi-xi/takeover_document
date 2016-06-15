@@ -21,6 +21,14 @@
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
+\begin{frame}{コードについて}
+    \begin{itemize}
+        \item 今日のコードとプレゼンは\url{https://github.com/xi-xi/takeover_document}
+
+        \item \alert{何かあればIssuesに書いてください}
+        \item 公開レポジトリなので実名公開しないように!
+    \end{itemize}
+\end{frame}
 
 \section{Pythonとは?}
 \begin{frame}
@@ -157,14 +165,6 @@ $ pyenv local anaconda3-4.0.0
 \end{frame}
 
 \section{データのロード}
-\begin{frame}{コードについて}
-    \begin{itemize}
-        \item 今日のコードとプレゼンは\href{https://github.com/xi-xi/takeover_document}{https://github.com/xi-xi/takeover\_document}
-
-        \item \alert{何かあればIssuesに書いてください}
-        \item 公開レポジトリなので実名公開しないように!
-    \end{itemize}
-\end{frame}
 \begin{frame}{データのロード}
     Pythonは一般的なファイル形式をサポート
     \begin{itemize}
@@ -233,6 +233,11 @@ if __name__ == '__main__':
             \end{block}
         \end{column}
     \end{columns}
+\end{frame}
+\begin{frame}{標準以外のライブラリの場合}
+    pandasを使えば一行
+
+    調べればすぐわかるので省略
 \end{frame}
 \defverbatim[colored]\loadcsvcpp{%
 \begin{lstlisting}[language=C++,basicstyle=\tiny\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
@@ -345,7 +350,8 @@ if __name__ == '__main__':
 \begin{frame}{Tips}
     \begin{itemize}
         \item エディタにはPEPチェックを導入
-        \item Google Python Style Guideを参考\href{https://google.github.io/styleguide/pyguide.html}{https://google.github.io/styleguide/pyguide.html}
+        \item Google Python Style Guideを参考\\
+            \url{https://google.github.io/styleguide/pyguide.html}
         \begin{itemize}
             \item 使うべき文法
             \item 使うべきでない文法
