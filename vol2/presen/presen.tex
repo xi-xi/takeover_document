@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{type1cm}
 \usepackage{listings}
+\usepackage{color}
 \usepackage{pxjahyper}
 
 \title{引き継ぎ資料 Vol.2}
@@ -162,6 +163,125 @@ $ pyenv local anaconda3-4.0.0
     \begin{exampleblock}{(参考)Windows}
         Anacondaインストーラを実行
     \end{exampleblock}
+\end{frame}
+
+\section{Pythonで便利な構文}
+\begin{frame}{話す内容}
+    \begin{itemize}
+        \item ワンライナー
+        \item 特殊メソッド
+    \end{itemize}
+\end{frame}
+\defverbatim[colored]\onelinear{%
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+normal = []
+for i in range(10):
+    normal.append(i)
+one = [i for i in range(10)]
+\end{lstlisting}
+}
+\begin{frame}{ワンライナー}
+    なんでも一行でかける素敵な構文
+
+    \onelinear
+
+    ここでnormalとoneは同じ
+
+    \alert{使い過ぎると読みにくくなるので注意}
+\end{frame}
+\defverbatim[colored]\wronglinear{%
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+def load_csv(filename):
+    with open(filename) as f:
+        return [
+            [cell for cell in row]
+            for row in csv.reader(f)
+        ]
+\end{lstlisting}
+}
+\begin{frame}{やっちゃったワンライナー}
+    \wronglinear
+\end{frame}
+\begin{frame}{特殊メソッド}
+    特定の構文を使う際にPythonによって呼び出される関数
+
+    \_\_init\_\_，\_\_call\_\_，\_\_str\_\_など様々
+\end{frame}
+\defverbatim[colored]\specialfunc{%
+\begin{lstlisting}[language=Python,basicstyle=\scriptsize\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}, commentstyle=\color{green}]
+class QuadraticFunction:
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def __call__(self, x):
+        return self.a * x ** 2 + self.b * x + self.c
+
+    def __str__(self):
+        return "{}x^2+{}x+{}".format(self.a, self.b, self.c)
+def main():
+    fx = QuadraticFunction(1, 2, 1) #call fx.__init__(1,2,1)
+    print(str(fx)) #call fx.__str__()
+    for x in range(10):
+        print(fx(x)) #call fx.__call__(x)
+\end{lstlisting}
+}
+\begin{frame}{例}
+    \specialfunc
+\end{frame}
+\begin{frame}{特殊メソッド}
+    特定の構文を使う際にPythonによって呼び出される関数
+
+    \_\_init\_\_，\_\_call\_\_，\_\_str\_\_など様々
+
+    うまく使うと関数のようなクラスインスタンスも作成可能
+\end{frame}
+
+\section{Pythonプログラムを良くするちょっとしたこと}
+\begin{frame}{心得とか}
+    \begin{itemize}
+        \item エディタにはPEPチェックを導入
+        \item Google Python Style Guideを参考\\
+            {\small\url{https://google.github.io/styleguide/pyguide.html}}
+        \begin{itemize}
+            \item 使うべき文法
+            \item 使うべきでない文法
+            \item 命名規則
+            \item コメントの書き方
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+\begin{frame}{覚えておくと便利な関数}
+    \begin{itemize}
+        \item zip
+        \item enumerate
+    \end{itemize}
+\end{frame}
+\defverbatim[colored]\zipsample{%
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+def main():
+    a_list = [1, 2, 3]
+    b_list = [4, 5, 6]
+    for a, b in zip(a_list, b_list):
+        print(a, b)
+\end{lstlisting}
+}
+\begin{frame}{zip}
+    ２つのリストを同時にループ
+    \zipsample
+\end{frame}
+\defverbatim[colored]\enumsample{%
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily,numbers=left, keywordstyle=\color{blue}\ttfamily, stringstyle=\color{red}]
+def main():
+    a_list = ["a", "b", "c"]
+    for i, a in enumerate(a_list):
+        print(i, a)
+\end{lstlisting}
+}
+\begin{frame}{enumerate}
+    indexと要素を同時に取得
+    \enumsample
 \end{frame}
 
 \section{データのロード}
@@ -345,20 +465,4 @@ if __name__ == '__main__':
         \end{column}
     \end{columns}
 \end{frame}
-
-\section{Python Tips}
-\begin{frame}{Tips}
-    \begin{itemize}
-        \item エディタにはPEPチェックを導入
-        \item Google Python Style Guideを参考\\
-            \url{https://google.github.io/styleguide/pyguide.html}
-        \begin{itemize}
-            \item 使うべき文法
-            \item 使うべきでない文法
-            \item 命名規則
-            \item コメントの書き方
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
 \end{document}
