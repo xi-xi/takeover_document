@@ -14,18 +14,6 @@
 \def\<{\@ifstar{\zx@hwback\nobreak}{\zx@hwback\relax}}
 \def\zx@hwback#1{\leavevmode#1\hskip-.5em\relax}
 
-\usepackage{color}
-\usepackage{listings}
-\lstset{%
-    language={Python},%
-    basicstyle={\footnotesize},%
-    identifierstyle={\footnotesize},%
-    commentstyle={\footnotesize\color{mLightGreen}},%
-    keywordstyle={\footnotesize\color{mLightBrown}},%
-    stringstyle={\footnotesize\color{mDarkBrown}},%
-    frame={tblr}%
-}
-
 \title{引き継ぎ資料 Vol.3}
 \subtitle{CにないPythonの世界}
 \date{2016/07/??}
@@ -40,98 +28,9 @@
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
-
-\section{タプル・リスト・ディクショナリ}
-\begin{frame}{Cの言語仕様にはないデータ構造}
-    \begin{itemize}
-        \item タプル
-        \item リスト
-        \item ディクショナリ
-    \end{itemize}
-\end{frame}
-\subsection{タプル}
-\begin{frame}[fragile]{タプル}
-    簡単な例
-    \begin{lstlisting}
->>> t = (1, 2, 3)
->>> print(t)
-(1, 2, 3)
->>> print(t[0])
-1
-    \end{lstlisting}
-    \only<+->{ここまではCの配列と同じ}
-\end{frame}
-\begin{frame}[fragile]{タプル}
-    あえてCで書くなら...
-    \begin{lstlisting}[language={C}]
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char** argv) {
-    int t[] = { 1, 2, 3 };
-    printf("%d\n", t[0]);
-    return 0;
-}
-    \end{lstlisting}
-    簡単!
-\end{frame}
-\begin{frame}[fragile]{難しい例}
-\begin{lstlisting}
->>> t = 1, 2, 3
->>> x, y, z = t
->>> def hoge():
-...     return 4, 5, 6
-...
->>> a1, a2, a3 = hoge()
->>> a = hoge()
->>> u, v, w = z, y, x
-\end{lstlisting}
-\only<+->{それぞれの変数の中身は?}
-\end{frame}
-\begin{frame}[fragile]{答}
-    \begin{columns}[t]
-        \begin{column}{0.49\hsize}
-\begin{lstlisting}
->>> t = 1, 2, 3
->>> x, y, z = t
->>> def hoge():
-...     return 4, 5, 6
-...
->>> a1, a2, a3 = hoge()
->>> a = hoge()
->>> u, v, w = z, y, x
-\end{lstlisting}
-        \end{column}
-        \begin{column}{0.49\hsize}
-\begin{lstlisting}
->>> print(t)
-(1, 2, 3)
->>> print(x, y, z)
-1 2 3
->>> print(a1, a2, a3)
-4 5 6
->>> print(a)
-(4, 5, 6)
->>> print(u, v, w)
-3 2 1
-\end{lstlisting}
-        \end{column}
-    \end{columns}
-\end{frame}
-\begin{frame}{タプルの要点}
-    \begin{itemize}
-        \item タプルに必要なのは``,''(カンマ)
-        \item 複数の値を返す関数はタプルを一つ返す関数
-        \item タプルは自動的に展開され複数の変数に代入
-    \end{itemize}
-\end{frame}
-
+\section{タプル・リスト・マップ}
 \section{関数}
-
 \section{オブジェクト}
-
 \section{名前空間}
-
 \section{numpy・matplotlib}
-
 \end{document}
