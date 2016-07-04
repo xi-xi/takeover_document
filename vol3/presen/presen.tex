@@ -123,7 +123,24 @@ int main(int argc, char** argv) {
         \item タプルに必要なのは``,''(カンマ)
         \item 複数の値を返す関数はタプルを一つ返す関数
         \item タプルは自動的に展開され複数の変数に代入
+        \item \alert{タプルでは要素の変更は不可}
     \end{itemize}
+\end{frame}
+\begin{frame}[fragile]
+    \alert{タプルでは要素の変更は認められない}
+\begin{lstlisting}
+>>> t = (1, 2, 3)
+>>> t[1] = 4
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item
+assignment
+\end{lstlisting}
+\end{frame}
+
+\subsection{リスト}
+\begin{frame}[fragile]{リスト}
+
 \end{frame}
 
 \section{関数}
