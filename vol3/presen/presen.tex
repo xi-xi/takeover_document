@@ -169,6 +169,7 @@ assignment
 >>> lst = [1, 3, 5, 7, 9]
 >>> print(lst)
 [1, 3, 5, 7, 9]
+>>> [a, b] = [1, 3]
     \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{便利な例}
@@ -222,6 +223,37 @@ False True
 \end{frame}
 
 \section{関数}
+\subsection{Cの関数の概念}
+\begin{frame}
+    \alert{\Large Cの関数どこまでマスターしてますか?}
+\end{frame}
+\begin{frame}[fragile]{Cの関数}
+    \begin{lstlisting}[language={C}]
+int add(int a, int b) {
+    return a + b;
+}
+void swap(int* a, int* b) {
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+void map(int* array, int N, int (*func)(int)) {
+    for (int i = 0; i < N; ++i)
+        array[i] = func(array[i]);
+}
+    \end{lstlisting}
+\end{frame}
+\begin{frame}{Cで出てきた概念}
+    \begin{itemize}
+        \item 引数
+        \item 戻り値
+        \item 値渡し・参照渡し
+        \item 関数ポインタ
+    \end{itemize}
+
+    \pause
+    Pythonはもう少し難しい概念を持つ
+\end{frame}
 
 \section{オブジェクト}
 
