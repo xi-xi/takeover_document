@@ -194,6 +194,32 @@ False True
 
     言語によっては連想配列・Map・HashMapなど  
 \end{frame}
+\begin{frame}[fragile]{簡単な例}
+    \begin{lstlisting}
+>>> d = {"a": 1, "b": 2, "c": 3}
+>>> print(d["a"])
+1
+>>> d["b"] = 5
+>>> print(d)
+{'b': 5, 'c': 3, 'a': 1}
+    \end{lstlisting}
+\end{frame}
+\begin{frame}{注意点}
+    \begin{itemize}
+        \item 存在しない要素を取得しようとするとエラー
+        \item 存在しない要素に代入すると要素を追加
+    \end{itemize}
+\end{frame}
+\subsection{まとめ}
+\begin{frame}{まとめ}
+    タプル・リスト・ディクショナリはCには無い
+
+    Pythonにはデフォルトで存在
+
+    お互いにネスト(入れ子)が可能
+
+    \alert{Cよりも柔軟に複雑なデータ構造を表現可能}
+\end{frame}
 
 \section{関数}
 
