@@ -169,6 +169,16 @@ assignment
 [1, 3]
     \end{lstlisting}
 \end{frame}
+\begin{frame}[fragile]{リスト}
+    難しい例
+\begin{lstlisting}
+>>> t = [1, 2, 3, 4, 5]
+>>> def hoge(x):
+...     return x**2
+... 
+>>> xs = [hoge(x) for x in t]
+\end{lstlisting}
+\end{frame}
 
 \subsection{ディクショナリ}
 \begin{frame}{ディクショナリとは}
