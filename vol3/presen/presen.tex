@@ -254,6 +254,153 @@ void map(int* array, int N, int (*func)(int)) {
     \pause
     Pythonはもう少し難しい概念を持つ
 \end{frame}
+\subsection{Python関数の基本}
+\begin{frame}[fragile]{Python関数の基本}
+\begin{lstlisting}
+>>> def add(a, b):
+...     return a + b
+... 
+>>> print(add(1, 3))
+4
+\end{lstlisting}
+\pause
+\begin{description}
+\item[add] 関数名
+\item[a, b] 引数
+\item[return a + b] a + bを戻り値とする
+\item[add(1, 3)] 関数呼び出し
+\end{description}
+\end{frame}
+\begin{frame}{Pythonの関数が持つ概念}
+    \begin{itemize}
+        \item 引数
+        \begin{itemize}
+            \item 参照の値渡し
+            \item キーワード引数
+        \end{itemize}
+        \item 戻り値
+        \item 関数のネスト
+        \item 関数オブジェクト
+        \begin{itemize}
+            \item lambda式
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+\subsection{引数}
+\begin{frame}{引数}
+    関数処理の材料
+
+    Cの場合二種類:
+    \begin{description}
+        \item[値渡し] 変数をそのまま渡す
+        \item[参照渡し] 変数のポインタを渡す
+    \end{description}
+
+    Pythonは全て\alert{参照の値渡し}
+
+    \pause
+    これがとってもややこしい
+\end{frame}
+\begin{frame}[fragile]{参照の値渡し}
+    \begin{columns}[t]
+        \begin{column}{0.51\hsize}
+\begin{lstlisting}
+>>> def swap(a, b):
+...     tmp = a
+...     a = b
+...     b = tmp
+...
+>>> def swap_e(lst, i, j):
+...     tmp = lst[i]
+...     lst[i] = lst[j]
+...     lst[j] = tmp
+...
+\end{lstlisting}
+        \end{column}
+        \begin{column}{0.47\hsize}
+\begin{lstlisting}
+>>> a, b = 1, 2
+>>> swap(a, b)
+>>> print(a, b)
+1 2
+>>> lst = [1, 3, 5, 7]
+>>> swap_e(lst, 2, 3)
+>>> print(lst)
+[1, 3, 7, 5]
+\end{lstlisting}
+        \end{column}
+    \end{columns}
+\end{frame}
+\begin{frame}{参照の値渡し}
+    Pythonの引数はローカル変数に\alert{代入}される
+
+    \begin{block}{不変性のオブジェクト(整数・小数・タプル\dots)}
+        \begin{itemize}
+            \item Cの値渡しと似た動作
+            \item 関数内での書き換えは呼び出し元に影響しない
+        \end{itemize}
+     \end{block}
+    \begin{block}{可変性のオブジェクト(リスト・ディクショナリ\dots)}
+        \begin{itemize}
+            \item Cの参照渡しと似た動作
+            \item 関数内での書き換えが呼び出し元に影響する
+        \end{itemize}
+    \end{block}
+
+    \pause
+    \alert{思わぬバグの可能性あり}
+\end{frame}
+\begin{frame}[fragile]{高度な引数の指定}
+ライブラリのリファレンスでまれに見る形式
+
+\begin{lstlisting}
+def func(*args, **kwargs)
+\end{lstlisting}
+
+こいつの*args，**kwargsって何?って話
+\end{frame}
+\begin{frame}{引数の形式}
+    どちらも\alert{可変長引数}を実現
+
+    \begin{block}{*args}
+        \begin{itemize}
+            \item 位置で指定された引数が格納
+            \item 引数がリスト形式で格納
+        \end{itemize}
+    \end{block}
+    \begin{block}{**kwargs}
+        \begin{itemize}
+            \item キーワードと共に指定された引数が格納
+            \item 引数がディクショナリ形式で格納
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}[fragile]{例}
+\begin{lstlisting}
+>>> def hoge(*args, **kwargs):
+...     print(args)
+...     print(kwargs)
+...
+>>> hoge(1, "a", cat="cute", dog="mustdie")
+(1, 'a')
+{'dog': 'mustdie', 'cat': 'cute'}
+\end{lstlisting}
+\pause
+
+リファレンスに明確に書かれていない引数も渡せる
+\end{frame}
+\subsection{戻り値}
+\begin{frame}{戻り値}
+    基本的にはCと同じ
+
+    ただし...
+    \begin{itemize}
+        \item 複数の値を返す事が可能
+        \item return文を書かなくても関数はNoneを返す
+    \end{itemize}
+\end{frame}
+\subsection{関数のネスト}
+\subsection{関数オブジェクト}
 
 \section{オブジェクト}
 
