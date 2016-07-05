@@ -57,6 +57,11 @@
     \end{itemize}
 \end{frame}
 \subsection{タプル}
+\begin{frame}{タプルとは}
+    数が並んだもの
+
+    Cで近い機能は配列
+\end{frame}
 \begin{frame}[fragile]{タプル}
     簡単な例
     \begin{lstlisting}
@@ -146,8 +151,30 @@ assignment
 \end{frame}
 
 \subsection{リスト}
+\begin{frame}{リストとは}
+    タプルに近い数の並んだもの
+
+    後から変更が可能
+\end{frame}
 \begin{frame}[fragile]{リスト}
-    hoge
+    簡単な例
+    \begin{lstlisting}
+>>> t = []
+>>> t.append(1)
+>>> t.append(2)
+>>> print(t)
+[1, 2]
+>>> t[1] = 3
+>>> print(t)
+[1, 3]
+    \end{lstlisting}
+\end{frame}
+
+\subsection{ディクショナリ}
+\begin{frame}{ディクショナリとは}
+    添字に数字以外が使えるリスト
+
+    言語によっては連想配列・Map・HashMapなど  
 \end{frame}
 
 \section{関数}
