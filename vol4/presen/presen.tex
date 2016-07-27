@@ -1,0 +1,120 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+\documentclass[12pt, xetex, xcolor=pdftex, dvipsnames]{beamer}
+\usetheme{metropolismyfont}
+\usepackage{dcolumn} % for apsrtable outputs
+\usepackage{xunicode} % extra support for unicode
+\usepackage{xltxtra} % implements some odds-and-ends features
+\usepackage{verbatim} % for multiple-line comments
+% to fix a problem in line-breaks
+% see "http://zrbabbler.hp.infoseek.co.jp/xelatex.html"
+\XeTeXlinebreaklocale "ja"
+\XeTeXlinebreakskip=0pt plus 1pt
+\XeTeXlinebreakpenalty=0
+\def\<{\@ifstar{\zx@hwback\nobreak}{\zx@hwback\relax}}
+\def\zx@hwback#1{\leavevmode#1\hskip-.5em\relax}
+
+\usepackage{color}
+\usepackage{listings}
+\lstset{%
+    language={Python},%
+    basicstyle={\footnotesize},%
+    identifierstyle={\footnotesize},%
+    commentstyle={\footnotesize\color{mLightGreen}},%
+    keywordstyle={\footnotesize\color{mLightBrown}},%
+    stringstyle={\footnotesize\color{mDarkBrown}},%
+    frame={tblr}%
+}
+
+\AtBeginSection[]{
+    \begin{frame}{目次}
+        \setbeamertemplate{section in toc}[sections numbered]
+        \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+}
+
+\title{引き継ぎ資料 Vol.4}
+\subtitle{オブジェクトの話}
+\date{2016/08/??}
+\author{}
+\institute{}
+\begin{document}
+\maketitle
+\begin{frame}{コンセプト}
+    ``オブジェクトって何?''を解決
+\end{frame}
+\begin{frame}{目次}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{導入}
+\begin{frame}{導入}
+    \begin{block}{Q.}
+        {\Large オブジェクトって何?}
+    \end{block}
+    \pause
+    \begin{alertblock}{A.}
+        データや構造としての``何か''
+    \end{alertblock}
+\end{frame}
+\begin{frame}[fragile]{例}
+\begin{lstlisting}
+>>> int_variable = 10  # int object
+>>> flaot_variable = 3.7  # float object
+>>> str_object = "Hello"  # str object
+>>> none_object = None  # NoneType object
+>>> list_object = []  # list object
+>>> dict_object = {}  # dict object
+\end{lstlisting}
+\pause
+なんでもオブジェクト
+
+オブジェクトの種類$\rightarrow$型
+\end{frame}
+
+\section{クラス}
+\begin{frame}{クラス}
+    \begin{block}{Q.}
+        {\Large クラスって何?}
+    \end{block}
+    \pause
+    \begin{alertblock}{A.}
+        Cの構造体{\Huge\alert{$+\alpha$}}
+
+        \pause
+        $+\alpha$の部分がとても巨大
+    \end{alertblock}
+\end{frame}
+\begin{frame}[fragile]{復習 -- 構造体 --}
+    ``車''を表す構造体
+
+    \lstinputlisting[language=C, firstline=3, lastline=6]{../src/struct.c}
+
+    \begin{itemize}
+        \item メンバはxとy
+        \item それぞれには.でアクセス
+    \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{復習 -- 構造体 --}
+    \lstinputlisting[language=C, firstline=12]{../src/struct.c}
+
+    car1とcar2は別物
+\end{frame}
+
+\section{メンバ}
+
+\section{継承}
+
+\section{まとめ}
+\begin{frame}
+    ``オブジェクト''の概念は使いこなせば便利
+
+    データ解析の分野では作る必要は無い可能性が高い
+
+    使えないのは危険
+\end{frame}
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+\end{document}
