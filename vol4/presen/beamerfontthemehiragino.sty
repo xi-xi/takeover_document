@@ -8,11 +8,11 @@
 %% ---------------------------------------------------------------------------
 %% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
 %% contributors can be found at
-%% 
+%%
 %%     https://github.com/matze/mtheme/graphs/contributors
-%% 
+%%
 %% and the original template was based on the HSRM theme by Benjamin Weiss.
-%% 
+%%
 %% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
 %% International License (https://creativecommons.org/licenses/by-sa/4.0/).
 %% ---------------------------------------------------------------------------
@@ -25,6 +25,10 @@
 \RequirePackage{pgfopts}
 \ifboolexpr{bool {xetex} or bool {luatex}}{
   \RequirePackage[no-math]{fontspec}
+  \RequirePackage{xeCJK}
+  \setCJKmainfont{ヒラギノ角ゴシック W3}
+  \setCJKsansfont{ヒラギノ角ゴシック W3}
+  \setCJKmonofont{Osaka}
   \newcounter{fontsnotfound}
   \newcommand{\checkfont}[1]{%
     \suppressfontnotfounderror=1%
@@ -46,11 +50,11 @@
       #3%
     \fi%
   }
-  \iffontsavailable{ヒラギノ角ゴシック W5,%
-                    ヒラギノ角ゴシック W7}%
+  \iffontsavailable{ヒラギノ角ゴシック W3,%
+                    ヒラギノ角ゴシック W6}%
   {%
-    \setsansfont[BoldFont={ヒラギノ角ゴシック W7}]%
-                {ヒラギノ角ゴシック W5}%
+    \setsansfont[BoldFont={ヒラギノ角ゴシック W6}]%
+                {ヒラギノ角ゴシック W3}%
   }{%
     \iffontsavailable{HiraKakuProN-W6-TTF,%
                     HiraKakuStd-W8-TTF}%
