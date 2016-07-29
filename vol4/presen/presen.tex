@@ -194,6 +194,96 @@
 \end{frame}
 
 \section{カプセル化}
+{
+    \setbeamertemplate{frame footer}{%
+        Photo credit: \href{https://www.flickr.com/photos/aidanmorgan/4634923304/}{John-Morgan} %
+        via \href{http://foter.com/}{Foter.com} %
+        / \href{http://creativecommons.org/licenses/by/2.0/}{CC BY}%
+    }
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/egg.jpg}}
+    \begin{frame}{カプセル化 = クラスの中身を隠蔽}
+    \end{frame}
+}
+\begin{frame}[fragile]{例}
+    Carクラスに燃料の概念を追加
+    \lstinputlisting[lastline=7]{../src/no_encapsulation.py}
+
+    \pause
+    \begin{block}{問題点}
+        車内部のガソリン(gas)を外部から操作可能
+    \end{block}
+\end{frame}
+\begin{frame}{問題点なのか?}
+    この状態なら燃料を操作されて困ることは無い\onslide<2->{{\Huge が}}
+
+    \onslide<3->
+    例えばこれが
+    \begin{itemize}
+        \item 重要なフラグ
+        \item 変更された時に何らかの処理をしたい変数
+    \end{itemize}
+    だったなら?
+\end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting[lastline=7]{../src/no_encapsulation_meter.py}
+    どうやってlamp関数を呼び出すか?
+\end{frame}
+\begin{frame}[fragile]{解}
+    \lstinputlisting[firstline=9, lastline=14]{../src/no_encapsulation_meter.py}
+    \pause
+    \begin{block}{問題点}
+        Carを使う側がlampを知っている必要あり
+
+        \alert{自動でランプは起動しない!}
+    \end{block}
+\end{frame}
+\begin{frame}[fragile]{カプセル化を使用}
+    \lstinputlisting[lastline=13]{../src/encapsulation_meter.py}
+\end{frame}
+\begin{frame}{カプセル化を使用}
+    \begin{itemize}
+        \item Carを使う側はlampを知らなくていい
+        \item gasに応じた処理を内部に追加可能
+        \begin{itemize}
+            \item 追加されてもユーザは知らなくていい
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+\begin{frame}{カプセル化}
+    \begin{itemize}
+        \item 外部から見えていいもの・いけないものを区別
+        \item アクセス権限を制御
+    \end{itemize}
+    \begin{table}
+        \centering
+        \caption{アクセス権限}
+        \begin{tabular}{lll}
+            \hline
+            名称 & 範囲 & 命名規則\footnotemark \\\hline
+            private & 自分のクラス内 & \_\_から名前を開始 \\\hline
+            protected & 自分と継承先内 & \_から名前を開始 \\\hline
+            public & どこからでも & \_をつけない \\\hline
+        \end{tabular}
+    \end{table}
+    \footnotetext{\href{https://google.github.io/styleguide/pyguide.html}{Google Python Style Guide}}
+\end{frame}
+\begin{frame}{注意点}
+    \begin{itemize}
+        \item Pythonはprivateでも外から呼ぶことが可能
+        \item privateなものを外から呼んではいけない\\
+            \alert{private = 外から呼ぶなという意思表示}
+        \item \_から始まるものは外から呼ばない!
+    \end{itemize}
+\end{frame}
+\begin{frame}{まとめると...}
+    ゲームの中身を知らなくても遊べるでしょうって話
+
+    改造してはいけない
+    \begin{figure}
+        \centering
+        \includegraphics[width=7cm]{./img/videogame_boy.png}
+    \end{figure}
+\end{frame}
 
 \section{継承}
 
