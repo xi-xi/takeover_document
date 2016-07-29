@@ -281,11 +281,29 @@
     改造してはいけない
     \begin{figure}
         \centering
-        \includegraphics[width=7cm]{./img/videogame_boy.png}
+        \includegraphics[width=6cm]{./img/videogame_boy.png}
     \end{figure}
 \end{frame}
 
 \section{継承}
+{
+    \setbeamertemplate{frame footer}{%
+        Photo credit: \href{https://www.flickr.com/photos/53416677@N08/4972914961/}{Caroline Davis2010} %
+        via \href{http://foter.com/}{Foter.com} %
+        / \href{http://creativecommons.org/licenses/by/2.0/}{CC BY}%
+    }
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/dna.jpg}}
+    \begin{frame}{継承 = クラスを拡張}
+    \end{frame}
+}
+\begin{frame}[fragile]{例}
+    \lstinputlisting[lastline=12]{../src/inheritance.py}
+\end{frame}
+\begin{frame}{よくある使い方}
+    ライブラリで容易されたクラスを継承
+
+    自分に必要なクラス化
+\end{frame}
 
 \section{ポリモーフィズム}
 
