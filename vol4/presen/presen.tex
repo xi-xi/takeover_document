@@ -339,6 +339,33 @@
 
     それが何であろうと無関係
 \end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting[lastline=6]{../src/duck.py}
+
+    add関数は対象が足し算可能ならなんでもよい!
+
+    \pause
+    このようにオブジェクトに一定の関数があればよい
+\end{frame}
+\begin{frame}{Pythonにおけるダックタイピング}
+    特殊メソッド
+\end{frame}
+\begin{frame}{特殊メソッド}
+    \begin{itemize}
+        \item 特定の構文を使う際に呼び出される関数
+        \item \_\_init\_\_，\_\_call\_\_，\_\_str\_\_など様々
+    \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting{../src/quadratic_function.py}
+\end{frame}
+\begin{frame}{特殊メソッド}
+    \begin{itemize}
+        \item 特定の構文を使う際に呼び出される関数
+        \item \_\_init\_\_，\_\_call\_\_，\_\_str\_\_など様々
+        \item 関数のようなオブジェクトも作成可能
+    \end{itemize}
+\end{frame}
 
 \section{まとめ}
 \begin{frame}
