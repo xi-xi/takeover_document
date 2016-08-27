@@ -92,6 +92,65 @@
 \end{frame}
 
 \section{docopt}
+\begin{frame}{docopt}
+    コマンドラインオプションを扱うライブラリ
+
+    Python標準のargparseより簡単かつかっこいい
+\end{frame}
+\begin{frame}{docopt}
+    \textbf{\alert{コメントから}}コマンドラインオプションを指定
+\end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting{../src/example_docopt.py}
+\end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting[firstline=3, lastline=5]{../src/example_docopt.py}
+
+    実行
+    \begin{lstlisting}[language=Bash]
+$ python example_docopt.py hoge fuga
+{'--arg1': False,
+ '--ball': False,
+ '-h': False,
+ '<arg1>': 'hoge',
+ '<arg2>': 'fuga'}
+    \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting[firstline=3, lastline=5]{../src/example_docopt.py}
+
+    実行
+    \begin{lstlisting}[language=Bash]
+$ python example_docopt.py -a hoge fuga
+{'--arg1': True,
+'--ball': False,
+'-h': False,
+'<arg1>': 'hoge',
+'<arg2>': 'fuga'}
+    \end{lstlisting}
+\end{frame}
+\begin{frame}
+    \begin{block}{Pros.}
+        \begin{itemize}
+            \item 書くのが楽
+            \item コメントとプログラムが必ず一致
+        \end{itemize}
+    \end{block}
+    \begin{block}{Cons.}
+        \begin{itemize}
+            \item 重い
+            \item \url{http://docopt.org/}をよく見ないとたまに変な動作
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}{用途}
+    ソースコードの中にファイル名とか入れるのやめよう
+
+    ファイルの位置が変わったらソースも書き換え
+
+    コマンドラインオプションにしておけば呼び出し時に自由自在
+\end{frame}
+
 \section{sphinx}
 \section{まとめ}
 \begin{frame}[standout]
