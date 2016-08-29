@@ -47,6 +47,13 @@
 
     要は布教
 \end{frame}
+\begin{frame}{今さら説明しないやつ}
+    \begin{description}
+        \item[numpy] 数値計算
+        \item[scipy] (numpyにはない)数値計算
+        \item[matplotlib] グラフ作成
+    \end{description}
+\end{frame}
 \begin{frame}{目次}
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
@@ -59,36 +66,14 @@
     すでにあるライブラリを上手に使おう!
 \end{frame}
 
-\section{numpy・scipy・matplotlib}
-\begin{frame}{それぞれの役割}
-    \begin{description}
-        \item[numpy] 数値計算
-        \item[scipy] (numpyにはない)数値計算
-        \item[matplotlib] グラフ作成
-    \end{description}
-\end{frame}
-\begin{frame}{numpy}
-    ベクトル演算・行列演算
+\section{multiprocessing}
+\begin{frame}{multiprocessing}
+    作業者を増やして高速化
 
-    \pause
-    numpy.ndarrayに対する演算がバリバリ可能
-\end{frame}
-\begin{frame}{scipy}
-    numpyにはない様々な演算が可能
-
-    \begin{itemize}
-        \item 極値計算
-        \item 積分
-    \end{itemize}
-\end{frame}
-\begin{frame}{matplotlib}
-    グラフ作成
-\end{frame}
-\begin{frame}
-    大体ご存知でしょうから省略しました
-\end{frame}
-\begin{frame}{numpyなどとのつきあい方}
-    ググれば大体でる(と思います)
+    \begin{figure}
+        \centering
+        \includegraphics{img/multitask.pdf}
+    \end{figure}
 \end{frame}
 
 \section{docopt}
