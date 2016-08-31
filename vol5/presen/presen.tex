@@ -75,6 +75,68 @@
         \includegraphics{img/multitask.pdf}
     \end{figure}
 \end{frame}
+{
+    \setbeamertemplate{frame footer}{%
+        Photo credit: \href{https://www.flickr.com/photos/hjmediastudios/7906332058/}{HJ Media Studios} %
+        via \href{http://foter.com/}{Foter.com} %
+        / \href{http://creativecommons.org/licenses/by-sa/2.0/}{CC BY-SA}%
+    }
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/clones.png}}
+    \begin{frame}[b]
+        \alert{\textbf{Q.}} Macのなかには作業者が何人?
+        \pause
+        \alert{\textbf{A.}} 8人{\tiny (環境によるが目安として)}
+    \end{frame}
+    \begin{frame}[b]
+        8倍速で実行可能
+    \end{frame}
+}
+\begin{frame}{いわゆるプログラミング用語}
+    作業者を作る = スレッド(Thread)を立てる
+\end{frame}
+\begin{frame}{Pythonのスレッド}
+    Pythonのスレッドは一人で幾つかの作業
+
+    \begin{figure}
+        \centering
+        \includegraphics{img/python_thread.pdf}
+    \end{figure}
+
+    \pause
+    いくつ立てても高速化はされない
+\end{frame}
+\begin{frame}{そこで登場!}
+    multiprocessingはProcess操作を提供
+
+    Process = 作業者
+\end{frame}
+\begin{frame}[fragile]{例}
+    \lstinputlisting[firstline=2, lastline=14]{../src/example_multiprocessing.py}
+\end{frame}
+\begin{frame}{実行時間}
+    約3倍の実行速度
+
+    \begin{table}[b]
+        \begin{tabular}{ll}\hline
+            関数名 & 実行時間[秒] \\\hline
+            single\_process & 6.62 \\\hline
+            multi\_process & 2.02 \\\hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+\begin{frame}{注意点}
+    \begin{itemize}
+        \item 5プロセスで実行しているが5倍にはならない
+        \begin{itemize}
+            \item プロセスの生成はそれなりに大変
+        \end{itemize}
+        \item なんでもかんでも別プロセスにしない!
+        \begin{itemize}
+            \item デバッグがし難い
+            \item ここぞという時の切り札
+        \end{itemize}
+    \end{itemize}
+\end{frame}
 
 \section{docopt}
 \begin{frame}{docopt}
