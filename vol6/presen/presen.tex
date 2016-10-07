@@ -1,0 +1,58 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+\documentclass[12pt, xetex, xcolor=pdftex, dvipsnames]{beamer}
+\usetheme{metropolismyfont}
+\usepackage{dcolumn} % for apsrtable outputs
+\usepackage{xunicode} % extra support for unicode
+\usepackage{xltxtra} % implements some odds-and-ends features
+\usepackage{verbatim} % for multiple-line comments
+% to fix a problem in line-breaks
+% see "http://zrbabbler.hp.infoseek.co.jp/xelatex.html"
+\XeTeXlinebreaklocale "ja"
+\XeTeXlinebreakskip=0pt plus 1pt
+\XeTeXlinebreakpenalty=0
+\def\<{\@ifstar{\zx@hwback\nobreak}{\zx@hwback\relax}}
+\def\zx@hwback#1{\leavevmode#1\hskip-.5em\relax}
+
+\usepackage{color}
+\usepackage{listings}
+\lstset{%
+    language={Python},%
+    basicstyle={\footnotesize},%
+    identifierstyle={\footnotesize},%
+    commentstyle={\footnotesize\color{mLightGreen}},%
+    keywordstyle={\footnotesize\color{mLightBrown}},%
+    stringstyle={\footnotesize\color{mDarkBrown}},%
+    frame={tblr}%
+}
+
+\usepackage{graphicx}
+
+\AtBeginSection[]{
+    \begin{frame}{目次}
+        \setbeamertemplate{section in toc}[sections numbered]
+        \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+}
+
+\title{引き継ぎ資料 Vol.6}
+\subtitle{全曲率の話}
+\date{2016/09/??}
+\author{}
+\institute{}
+\begin{document}
+\maketitle
+\begin{frame}{コンセプト}
+    そろそろソースコード引き継がないとやばい
+\end{frame}
+\begin{frame}{目次}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+\section{概要}
+\section{理論}
+\section{実装}
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+\end{document}
