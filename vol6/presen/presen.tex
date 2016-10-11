@@ -89,6 +89,44 @@ array([0., 0., 0.])
 \end{frame}
 
 \section{2次元化}
+\begin{frame}{理論}
+    \begin{align}
+        \vec{P'}(t) = M \cdot \vec{P}(t)
+    \end{align}
+
+    $M$が$2 \times 3$の行列なら$\vec{P'}(t)$は2次元軌道
+\end{frame}
+\begin{frame}[fragile]{実装}
+クラスを一つ作成
+\begin{lstlisting}
+class SecondDimensionalize:
+    def __init__(self, func):
+        self.mat = np.array(
+            [[1.0, 0.0, 0.0],
+             [0.0, 1.0, 0.0]]
+        )
+        self.func = func
+
+    def __call__(self, t):
+        return np.dot(self.mat, self.func(t))
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{実装}
+見かけ上関数に見えるオブジェクト
+
+\begin{lstlisting}
+>>> p_dash = SecondDimensionalize(P)
+>>> p_dash(0.)
+array([0., 0.])
+\end{lstlisting}
+\end{frame}
+\begin{frame}
+    なぜ見かけ上関数に見えるオブジェクトが必要?
+
+    \pause
+
+    \alert{\textbf{S字の抽出過程で使いたい}}
+\end{frame}
 
 \section{S字の抽出}
 \subsection{変曲点の計算}
