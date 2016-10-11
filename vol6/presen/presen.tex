@@ -73,17 +73,17 @@
 \begin{frame}{B-spline曲線}
     B-spline曲線の詳細は省略
     \begin{align}
-        \vec{P}(t) (0\leq t \leq 1)
+        \vec{B}(t) (0\leq t \leq 1)
     \end{align}
-    $\vec{P}(t)$はtを媒介変数とする3次元曲線
+    $\vec{B}(t)$はtを媒介変数とする3次元曲線
 \end{frame}
 \begin{frame}[fragile]{実装的な話}
 \begin{itemize}
-\item Pは関数名
+\item Bは関数名
 \item 3次元の座標を返す
 \end{itemize}
 \begin{lstlisting}
->>> P(0.)
+>>> B(0.)
 array([0., 0., 0.])
 \end{lstlisting}
 \end{frame}
@@ -91,10 +91,10 @@ array([0., 0., 0.])
 \section{2次元化}
 \begin{frame}{理論}
     \begin{align}
-        \vec{P'}(t) = M \cdot \vec{P}(t)
+        \vec{P}(t) = M \cdot \vec{B}(t)
     \end{align}
 
-    $M$が$2 \times 3$の行列なら$\vec{P'}(t)$は2次元軌道
+    $M$が$2 \times 3$の行列なら$\vec{P}(t)$は2次元軌道
 \end{frame}
 \begin{frame}[fragile]{実装}
 クラスを一つ作成
@@ -115,8 +115,8 @@ class SecondDimensionalize:
 見かけ上関数に見えるオブジェクト
 
 \begin{lstlisting}
->>> p_dash = SecondDimensionalize(P)
->>> p_dash(0.)
+>>> p = SecondDimensionalize(B)
+>>> p(0.)
 array([0., 0.])
 \end{lstlisting}
 \end{frame}
@@ -130,6 +130,85 @@ array([0., 0.])
 
 \section{S字の抽出}
 \subsection{変曲点の計算}
+\begin{frame}{変曲点}
+    \begin{description}
+        \item[変曲点] 曲線の曲率=0となる点
+    \end{description}
+\end{frame}
+\begin{frame}{曲率}
+    曲率$\kappa(t)$の計算法
+    \begin{align}
+        \kappa(t) =
+        \dfrac{%
+            \left|\begin{array}{c}
+                \vec{P'}(t)\\
+                \vec{P''}(t)
+            \end{array}\right|
+        }{%
+            \left|\vec{P'}(t)\right|^3%
+        }
+    \end{align}
+\end{frame}
+\begin{frame}[fragile]{実装}
+\begin{lstlisting}
+class Curvature:
+    def __init__(self, func):
+        self._func = func
+        self._d = func.diff()
+        self._dd = self._d.diff()
+
+    def __call__(self, t):
+        d  = self._d(t)
+        dd = self._dd(t)
+        return ((d[0] * dd[1] - d[1] * dd[0]) /
+            ((d[0] ** 2 + d[1] ** 2) ** 1.5))
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{実装}
+    diff関数が必要なので追記
+\begin{lstlisting}
+class SecondDimensionalize:
+.
+.
+.
+    def diff(self):
+        return (
+            SecondDimensionalize(self.func.diff())
+        )
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{実装}
+\begin{lstlisting}
+>>> p = SecondDimensionalize(B)
+>>> p(0.)
+array([0., 0.])
+>>> c = Curvature(p)
+>>> c(0.)
+3.5
+\end{lstlisting}
+2次元軌道pとその曲率cがそれぞれ関数として使用可能
+\pause
+変曲点 = cが0となる点
+\end{frame}
+\begin{frame}{変曲点の探し方}
+    scipy.optimize.brentq関数は関数が0になる点を探索
+
+    \begin{minipage}{0.5\hsize}
+        \begin{block}{brentq(f, a, b)}
+            \begin{description}
+                \item[f] 関数
+                \item[a] 探索範囲の左端
+                \item[b] 探索範囲の右端
+            \end{description}
+        \end{block}
+    \end{minipage}\begin{minipage}{0.5\hsize}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\hsize]{img/brentq.pdf}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+
 \subsection{全曲率をもとにした取り出し}
 
 \begin{frame}[standout]
