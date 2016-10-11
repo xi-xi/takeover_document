@@ -14,6 +14,7 @@
 \def\<{\@ifstar{\zx@hwback\nobreak}{\zx@hwback\relax}}
 \def\zx@hwback#1{\leavevmode#1\hskip-.5em\relax}
 
+\renewcommand{\vec}{\textbf} %\vecを矢印からボールドに
 \usepackage{color}
 \usepackage{listings}
 \lstset{%
@@ -69,6 +70,23 @@
 \end{frame}
 
 \section{軌道の3次元関数}
+\begin{frame}{B-spline曲線}
+    B-spline曲線の詳細は省略
+    \begin{align}
+        \vec{P}(t) (0\leq t \leq 1)
+    \end{align}
+    $\vec{P}(t)$はtを媒介変数とする3次元曲線
+\end{frame}
+\begin{frame}[fragile]{実装的な話}
+\begin{itemize}
+\item Pは関数名
+\item 3次元の座標を返す
+\end{itemize}
+\begin{lstlisting}
+>>> P(0.)
+array([0., 0., 0.])
+\end{lstlisting}
+\end{frame}
 
 \section{2次元化}
 
