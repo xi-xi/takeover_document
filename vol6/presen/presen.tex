@@ -217,6 +217,84 @@ array([0., 0.])
 \end{frame}
 
 \subsection{全曲率をもとにした取り出し}
+\begin{frame}{曲率・全曲率}
+  \begin{description}
+    \item[曲率] 軌道の曲がり具合を表す
+    \begin{align}
+      \kappa(t) = \dfrac{1}{r}
+    \end{align}
+      軌道の回転が強い(rが小さいほど)大きな値
+    \item[全曲率] 軌道がどれだけ曲がったかを示す
+    \begin{align}
+      \mu(t) = \int_a^b \kappa(s)ds
+    \end{align}
+    ここで$s$は軌道長
+  \end{description}
+\end{frame}
+\begin{frame}{例: 円の場合}
+  1/4円を描く軌道について
+  \begin{minipage}{0.5\hsize}
+    \begin{align}
+      \kappa(t) &= \dfrac{1}{r} = const.\\
+      \mu &= \int_a^b\kappa(s)ds \\
+      &= \dfrac{1}{r}\int_0^{\frac{\pi}{2}r}ds\\
+      &= \dfrac{\pi}{2}
+    \end{align}
+  \end{minipage}%
+  \begin{minipage}{0.5\hsize}
+    \begin{figure}
+      \centering
+      \includegraphics{img/curvature.pdf}
+    \end{figure}
+  \end{minipage}
+  \only<2>{
+    \begin{center}
+      全曲率 = 軌道の回った角度
+    \end{center}
+  }
+\end{frame}
+\begin{frame}{実装}
+  \begin{align}
+      \mu(s) &= \int_a^b \kappa(s)ds\\
+      \mu(t) &= \int_{t_a}^{t_b} \kappa(t) \frac{ds}{dt}dt
+  \end{align}
+  曲率を積分すればよい
+\end{frame}
+\begin{frame}{積分}
+  scipy.integrate.quad関数
+  \begin{minipage}{0.5\hsize}
+      \begin{block}{quad(f, a, b)}
+          \begin{description}
+              \item[f] 関数
+              \item[a, b] 積分範囲
+              \item[戻り値] 積分値, 推定された誤差
+          \end{description}
+      \end{block}
+  \end{minipage}\begin{minipage}{0.5\hsize}
+      \begin{figure}
+          \centering
+          \includegraphics[width=0.8\hsize]{img/integ.pdf}
+      \end{figure}
+  \end{minipage}
+\end{frame}
+\begin{frame}[fragile]{実装}
+\begin{lstlisting}
+class Curvature:
+    def __init__(self, func):
+        self._d = func.diff()
+        self._c = Curvature(func)
+
+    def _integrand(self, t):
+        d = self._d(t)
+        return (np.abs(self._c(t)) *
+            ((d[0] ** 2 + d[1] ** 2) ** 0.5))
+
+    def __call__(self, ta, tb):
+        return si.quad(
+            self._integrand, ta, tb
+        )[0]
+\end{lstlisting}
+\end{frame}
 
 \begin{frame}[standout]
   Questions?
